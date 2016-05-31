@@ -1,0 +1,288 @@
+<<<<<<< .mine
+
+<div id="form-group">
+=======
+<div class="row">
+<div class="form-group col-md-12">
+>>>>>>> .r914
+<label for "School">
+School for 2016-17</label>
+    {{Form::text('School',null,['class'=>'form-control ','maxlength'=>'60','id'=>'School', 'required'])}}
+
+</div>
+<div class="form-group col-md-4">
+<label for "SchoolAddress">School Address</label>
+  {{Form::text('SchoolAddress',null,['class'=>'form-control ','maxlength'=>'60'])}}
+    
+    </div>
+    <div class="form-group col-md-4">
+<label for "SchoolCity">City</label>
+     {{Form::text('SchoolCity',null,['class'=>'form-control ','maxlength'=>'40'])}}
+    </div>
+<div class="form-group col-md-4">
+<label for "SchoolState">State</label>
+     {{Form::text('SchoolState',null,['class'=>'form-control ','maxlength'=>'20'])}}
+      </div>
+  <div class="form-group col-md-6">
+<label for "SchoolPhone">School Phone Number*</label>
+         {{Form::tel('SchoolPhone',null,['class'=>'form-control ','maxlength'=>'50','required'])}}
+</div>
+<div class="form-group col-md-6">
+<label for "SchoolFax">School Fax Number</label>
+       {{Form::tel('SchoolFax',null,['class'=>'form-control ','maxlength'=>'50'])}}
+    </div>
+ <script>
+//when you start typing the school then the rest of the page should generate
+$('#School').blur(function(){
+grade = $('Grade').val();
+if (grade =="PHS") {
+
+  $('#phsonly').show();
+  $('#phsonly2').show();
+} else {
+$('#notphs').show();
+$('#notphs2').show();
+}
+  $(grade == "8") {
+   $('#eightdiv').show();
+
+  }
+  $(grade == "12") {
+   $('#twelvegrdiv').show();
+
+  }
+}); 
+
+ </script>
+<div style="display:none;" id="phsonly">
+ 
+ <div class="form-group col-md-4">
+<label for "AmericanOfficePhone">American Office Phone Number*</label>
+       {{Form::text('AmericanOfficePhone',null,['class'=>'form-control ','maxlength'=>'50','required'])}}
+    
+  </div>
+  <div class="form-group col-md-4">
+<label for "AmericanContactFirst">American Contact Person First Name</label>
+     {{Form::text('AmericanContactFirst',null,['class'=>'form-control ','maxlength'=>'30'])}}
+  
+  </div>
+  <div class="form-group col-md-4">
+<label for "AmericanContactLast">American Contact Person Last Name:</label>
+  {{Form::text('AmericanContactLast',null,['class'=>'form-control ','maxlength'=>'30'])}}
+  
+  </div>
+  <div class="form-group col-md-6">
+<label for "SemAdvName">Name of Yeshiva/Seminary Advisor</label>
+  {{Form::text('SemAdvName',null,['class'=>'form-control ','maxlength'=>'100'])}}
+    </div>
+  <div class="form-group col-md-6">
+<label for "SemAdvPhone">Phone Number of Advisor</label>
+  {{Form::text('SemAdvPhone',null,['class'=>'form-control ','maxlength'=>'100'])}}
+    </div>
+  <div class="form-group col-md-12">
+<label for "WhyInterested">Why are you interested in going to this Seminary/Yeshiva?</label>
+  {{Form::text('WhyInterested',null,['class'=>'form-control ','maxlength'=>'50'])}}
+  
+  </div>
+ </div><!-- end phs only seminary questions-->
+  
+<div class="form-group col-md-12">
+<label> Were you happy with your school last year?</label>
+  <label for="HappyWithSchool_0" class="radio-inline">
+      {{Form::radio('HappyWithSchool','1',false,  ['id'=>'HappyWithSchool_0', 'class'=>'radio '])}}
+      Yes</label>
+      
+  <label class="radio-inline" for="HappyWithSchool_1">
+  
+    {{Form::radio('HappyWithSchool','0',false,  ['id'=>'HappyWithSchool_1', 'class'=>'radio '])}}   No </label>    
+  </div>
+  <div class="form-group col-md-12">
+<label for "HappyReason"> Why or why not?</label> 
+{{Form::text('HappyReason',null,['class'=>'form-control ','maxlength'=>'50'])}}
+    </div>
+    
+    <h3 class="col-md-12">Tuition Information</h3>
+  <div class="form-group col-md-12">
+  <label for "FullSchoolAmt">Full School Tuition Amount  2016-17</label>
+{{Form::number('FullSchoolAmt',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+    <div class="form-group col-md-12">
+<label for "FinAidFromSchool">Amount of Financial Aid from School (Scholarship)  2016-17</label>
+{{Form::number('FinAidFromSchool',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+  <div class="form-group col-md-12">
+<label for "DueToSchool">Amount Due to School after scholarship  2016-17<br />
+(subtract line 2 from line 1 )</label>
+{{Form::number('DueToSchool',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+  <div class="form-group col-md-12">
+    <label for"ParentPay">Amount Parent Can Pay  2016-17 </label>
+{{Form::number('ParentPay',null,['class'=>'form-control ','maxlength'=>'50'])}}
+    </div>
+   <p class="col-md-12">Financial Aid from Other Sources   </p>
+     <div class="form-group col-md-12">
+   <label for"FinAidFromOther">Other Sources: Amount:</label>
+{{Form::number('FinAidFromOther',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+    
+   <div style="display:none;" id="notphs">
+       <div class="form-group col-md-12">
+        <label>Please list other Financial Aid sources</label>
+{{Form::textarea('FinAidOtherDetail',null,['class'=>'form-control '])}}
+    
+    </div>
+  </div>   <!-- end not seminary financial-->
+    
+   <div style="display:none;" id="phsonly2">
+<p>Please list all scholarships you have applied for:</p>
+  <div class="form-group col-md-12">
+<label for "PHSFund1">Organization/Fund #1:</label>
+{{Form::text('PHSFund1',null,['class'=>'form-control ','maxlength'=>'50'])}}
+
+  <div class="form-group col-md-12">
+<label for "PHSStatus1">Status: Accepted, Pending, or Rejected</label>
+{{Form::text('PHSStatus1',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+  <div class="form-group col-md-12">
+<label for "PHSAmount1">Amount</label>
+{{Form::number('PHSAmount1',null,['class'=>'form-control ','maxlength'=>'50'])}}
+
+</div>
+  <div class="form-group col-md-12">
+<label for "PHSFund2">Organization/Fund #2</label>
+{{Form::text('PHSFund2',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+  <div class="form-group col-md-12">
+<label for "PHSStatus2">Status: Accepted, Pending, or Rejected</label>
+{{Form::text('PHSStatus2',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+  <div class="form-group col-md-12">
+<label for "PHSAmount2">Amount</label>
+{{Form::number('PHSAmount2',null,['class'=>'form-control ','maxlength'=>'50'])}}
+
+
+</div>
+  <div class="form-group col-md-12">
+<label for "PHSFund3">Organization/Fund #3</label>
+{{Form::text('PHSFund3',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+  <div class="form-group col-md-12">
+<label for "PHSStatus3">Status: Accepted, Pending, or Rejected</label>
+{{Form::text('PHSStatus3',null,['class'=>'form-control ','maxlength'=>'50'])}}
+
+</div>
+  <div class="form-group col-md-12">
+<label for "PHSAmount3">Amount</label>
+{{Form::number('PHSAmount3',null,['class'=>'form-control ','maxlength'=>'50'])}}
+
+
+</div>
+
+
+  <div class="form-group col-md-12">
+      <p>What are your plans after this year of study?</p>
+    {{Form::textarea('PHSPlans',null,['class'=>'form-control ','maxlength'=>'50'])}}
+    </div>
+      <div class="form-group col-md-12">
+    <label class="big">Is the school you are planning to attend in Israel?</label>
+  <label for="israel_1" class="radio-inline">
+  {{Form::radio('Israel','yes',false,  ['id'=>'israel_1', 'class'=>'radio '])}}Yes  </label>
+          <label for="israel_2" class="radio-inline">
+  {{Form::radio('Israel','No',false,  ['id'=>'israel_2', 'class'=>'radio '])}}  No</label>        
+          </div>
+          <div class="form-group col-md-12">
+<label>Passport Number</label>
+    {{Form::text('PassportID',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+
+</div><!-- end phs only financial-->
+ 
+      <input type="hidden" name="PrevS1SchoolYear" value="2015-2016"  />
+
+<<<<<<< .mine
+<div id="form-group">
+<p>Previous Education - 2015-16</p>
+<label for class="big" "PrevS1Name">School Name</label>
+=======
+<div class="form-group col-md-12">
+<h3>Previous Education 2015-16</h3>
+<label for="PrevS1Name">School Name</label>
+>>>>>>> .r914
+        {{Form::text('PrevS1Name',null,['class'=>'form-control ','maxlength'=>'60'])}}
+      </div>
+      <div class="form-group col-md-12">
+      <label for class="big" "PrevS1Loc">City, State, Zip*</label>
+    {{Form::text('PrevS1Loc',null,['class'=>'form-control ','maxlength'=>'60'])}}
+      </div>
+      <div class="form-group col-md-12">
+      <label for class="big" "PrevS1Qty">Number of Years attended*</label>
+      {{Form::number('PrevS1Qty',null,['class'=>'form-control ','maxlength'=>'60'])}}
+    </div>
+
+   <input type="hidden" name="PrevS2SchoolYear" value="2014-2015" size="32" />
+<div class="form-group col-md-12">
+<label for "PrevS2Name">Name of Elementary School*</label>
+       {{Form::text('PrevS2Name',null,['class'=>'form-control ','maxlength'=>'60','required'])}}
+      </div>
+      <div class="form-group col-md-12">
+      <label for class="big" "PrevS2Loc">Location*</label>
+       {{Form::text('PrevS2Loc',null,['class'=>'form-control ','maxlength'=>'60','required'])}}
+      </div>
+      <div class="form-group col-md-12">
+      <label for class="big" "PrevS2Qty">Number of Years attended*</label>
+      {{Form::number('PrevS2Qty',null,['class'=>'form-control ','maxlength'=>'60','required'])}}
+      
+   <div class="form-group col-md-12">
+      <label>Other School Attended</label>
+      {{Form::textarea('OtherSchools',null,['class'=>'form-control ','maxlength'=>'60'])}}
+      
+      </div>
+      
+<div id="eightdiv" style"display:none;" >
+        <div class="form-group col-md-12">
+        <p>For 7th and 8th grade applicants</p>
+      <label for="HSNextYear" class="big">Where do you plan on registering for high school?</label>
+{{Form::number('HSNextYear',null,['class'=>'form-control ','maxlength'=>'50'])}}
+    </div>
+  </div>
+<div id="twelvegrdiv" style"display:none;" >
+          <div class="form-group col-md-12">
+          <p>For 12th grade applicants</p>
+      <label for="HSNextYear" class="big">What are you plans for next year?</label>
+{{Form::number('HSNextYear',null,['class'=>'form-control ','maxlength'=>'50'])}}
+</div>
+</div>
+      
+      <div id="notphs2" style="display:none;" >
+<h3 class="col-md-12">Special Services</h1>   
+<<<<<<< .mine
+             <label for class="big" "SpecialEdCurrent">Are there any special education services that you are currently receiving?</label>
+<label for="SpecialEdCurrent_0">Yes</label>
+  {{Form::radio('SpecialEdCurrent','1',false,  ['id'=>'SpecialEdCurrent_0', 'class'=>'radio '])}}
+        <label for="SpecialEdCurrent_1">No </label>
+ {{Form::radio('SpecialEdCurrent','0',false,  ['id'=>'SpecialEdCurrent_1', 'class'=>'radio '])}}
+=======
+
+<div class="form-group col-md-12">                    <label for class="big" "SpecialEdCurrent">Are there any special education services that you are currently receiving?</label>
+<label for="SpecialEdCurrent_0" class="radio-inline">
+  {{Form::radio('SpecialEdCurrent','1',false,  ['id'=>'SpecialEdCurrent_0', 'class'=>'radio '])}}Yes</label>
+        <label for="SpecialEdCurrent_1" class="radio-inline">
+ {{Form::radio('SpecialEdCurrent','0',false,  ['id'=>'SpecialEdCurrent_1', 'class'=>'radio '])}}No</label>
+>>>>>>> .r914
+</div>  
+<div class="form-group col-md-12">      
+      <label class="big">Are there any special education services that have been recommended?</label> 
+<label for="SpecialEdRecommend_0" class="radio-inline">
+        {{Form::radio('SpecialEdRecommend','1',false,  ['id'=>'SpecialEdRecommend_0', 'class'=>'radio '])}}Yes</label>
+       
+<label for="SpecialEdRecommend_1" class="radio-inline">
+       {{Form::radio('SpecialEdRecommend','0',false,  ['id'=>'SpecialEdRecommend_1', 'class'=>'radio '])}}No</label>
+      </div>
+<div class="form-group col-md-12">      
+     <label>If yes, explain:</label>
+{{Form::textarea('SpecialEdDetail',null,['class'=>'form-control ','maxlength'=>'50'])}}
+     </div>
+    
+    </div>
+    <!-- end speical education not seminary-->
+</div>

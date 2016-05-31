@@ -1,0 +1,32 @@
+@extends('layout.main')
+@section('content')
+<div class="span7 offset1">
+        @if(Session::has('success'))
+          <div class="alert alert-success">
+          <h2>{!! Session::get('success') !!}</h2>
+          </div>
+        @endif
+
+      
+</div>
+<h1>Child's information</h1>
+<p>Start application</p>
+<p>Edit application if neccesary</p>
+<p>Do we show status?</p>
+//on show file section after already has an record id
+//only show if child filename is blank
+<p> 
+ {{ Html::linkRoute('upload', 'Upload a photo of child', [ 'type'=>'child']) }}
+
+</p>
+//only show if father filename is blank
+
+<p>
+ {{ Html::linkRoute('upload', 'Upload photo of Father', [ 'type'=>'father']) }}
+</p>
+//only show if mother filename is blank
+<p>
+ {{ Html::linkRoute('upload', 'Upload photo of Mother', [ 'type'=>'mother']) }}
+</p>
+
+@stop

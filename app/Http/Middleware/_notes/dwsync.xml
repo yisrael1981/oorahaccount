@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="Authenticate.php" server="207.97.219.193:2121/oorah/" local="131085077837577079" remote="131079978000000000" Dst="2" />
+<file name="EncryptCookies.php" server="207.97.219.193:2121/oorah/" local="131085077838877153" remote="131079978000000000" Dst="2" />
+<file name="RedirectIfAuthenticated.php" server="207.97.219.193:2121/oorah/" local="131085077838897155" remote="131079978000000000" Dst="2" />
+<file name="VerifyCsrfToken.php" server="207.97.219.193:2121/oorah/" local="131085077844707487" remote="131079978000000000" Dst="2" />
+</dwsync>
