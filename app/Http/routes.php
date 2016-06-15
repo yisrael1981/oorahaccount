@@ -39,4 +39,12 @@ return view('uploadext');
 
       //account management section
 
+Route::get('account/login', array('uses' => 'accountController@showLogin', 'as'=>'accountlogin'));
+Route::get('account/dashboardmain/{accountid}', array('uses' => 'accountController@showDashboardMain','as'=>'accountmaindashboard'));
+Route::get('account/dashboardind/{accountid}/{indid}', array('uses' => 'accountController@showDashboardInd','as'=>'accountInddashboard'));
+Route::get('account/upload/{indid}', array('uses' => 'accountController@showUpload', 'as'=>'accountupload'));
+Route::post('account/upload', array('uses' => 'UploadController@uploadFromAccounts'));
+
+
+Route::post('account/login', array('uses' => 'accountController@doLogin'));
 Route::resource('account', 'AccountController');

@@ -4,3 +4,8 @@
 Homestead.yaml
 Homestead.json
 .env
+*.svn
+/svn
+*dwsync.xml
+/config/database.php
+resources/views/emails/test.blade.php
