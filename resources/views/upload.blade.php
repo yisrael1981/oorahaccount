@@ -4,7 +4,7 @@
      <div class="col-md-7 ">
       
 
-        <div class="secure"><h1>Upload Photo of <?php echo session('type');?></h1></div>
+        <div class="secure"><h1>Upload Photo of <?php echo $_GET['type'];?></h1></div>
 		<p>
 Step 1: Browse to select a photo<br>
 
@@ -27,13 +27,10 @@ Step 2: Click submit to upload photo
         
           <div class="controls">
           {!! Form::file('image') !!}
+	  <p class="alert alert-error">{!!$errors->first('image')!!}</p>
 	@if(Session::has('error'))
-
-  <p class="alert alert-danger">{!! Session::get('error') !!}</p>
-  @endif
-    <p class="alert "><strong><i>{!!$errors->first('image')!!}</i></strong></p>
-
-	
+	<p class="alert alert-error">{!! Session::get('error') !!}</p>
+	@endif
 
         
         </div>
@@ -45,4 +42,3 @@ Step 2: Click submit to upload photo
     </div>
    </div>
   </div>
-

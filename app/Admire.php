@@ -7,88 +7,42 @@ use Illuminate\Database\Eloquent\Model;
 class admire extends Model
 {
 protected $connection = 'sqlsrv2';
-	
-	public function LoginProcedure($userdata){
+    protected $table = 'KiruvLogin';
 
-		//$accountid ="204095";
-		//$Lastname = 'Pultman';
-
-		$SqlConn = 
-		"EXEC	[dbo].[ActLogin]
-		@ActID = " . $userdata["accountnum"] .",
-		@LastName = '" .$userdata["lastname"] ."'";
-
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
+/*
+public function MileageLoginProcedure(){
 		
-	}
+		$userName = Input::get('userName');
+ 		$password = Input::get('password');
+		$authMailAge  = "execute MileageLogin'".$userName."','0','".$password."' , NULL";
+		$database = \DB::select($authMailAge);
+		return $database;
+		
+	}*/
 	
-	public function DashboardFamilyNames ($familyid) {
-	$SqlConn = 
-		"EXEC [dbo].[ActGetInfo]
-		@ActID =  " . $familyid ;
+	public function LoginProcedure(){
+		
+		// @LoginCode, @Password, @IpAddress, @ApiKey, @ImeiNumber
+	/*	$accountid = Input::get('accountid');
+ 		$Lastname = Input::get('Lastname');
+*/
+		$accountid ="204095";
+ 		$Lastname = 'Pultman';
 
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		$LoginConn = 
+		"EXEC	[dbo].[ActLogin]
+		@ActID = " . $accountid .",
+		@LastName = '" .$Lastname."'";
+
+		$databaseResponse = \DB::select($LoginConn);
 		return $databaseResponse;
 	}
-	public function DashboardFamilyAddress ($familyid) {
-	$SqlConn = 
-		"EXEC [dbo].[ActGetAdrs]
-		@ActID =  " . $familyid ;
-
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
+	/*
+	public function MileageGetCoordinator($AuthTokenValue){
+		
+		$MileageGetCoordinator  = 'Execute MileageGetCoordinator "'.$AuthTokenValue.'"';
+		$GetCoordinator = \DB::select($MileageGetCoordinator);
+		return $GetCoordinator;
 	}
-	public function DashboardFamilyTel($familyid) {
-	$SqlConn = 
-		"EXEC [dbo].[ActGetTels]
-		@ActID =  " . $familyid ;
-
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
-	}
-	public function DashboardIndividual($familyid) {
-	$SqlConn = 
-		"EXEC [dbo].[ActGetInds]
-		@ActID =  " . $familyid ;
-
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
-	}
-
-	public function DashboardIndGetInfo($indid){
-	$SqlConn = 
-		"EXEC [dbo].[IndGetInfo]
-		@IndID  =  " . $indid ;
-
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
-	}
-	public function DashboardIndTel($indid){
-	$SqlConn = 
-		"EXEC [dbo].[IndGetTels]
-		@IndID  =  " . $indid ;
-
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
-	}
-	public function DashboardIndAffiliation($indid){
-	$SqlConn = 
-		"EXEC [dbo].[IndGetKiruvAffiliation]
-		@IndID  =  " . $indid ;
-
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
-	}
-	public function DashboardUploadImage ($indid, $content) {
-	$SqlConn = " EXEC	[dbo].[IndUpdateInfo]
-		@IndID  = " .$indid. ",
-		@DOB = NULL,
-		@Image  = '". $content."',
-		@Thumb ='". $content."'" ;
-	
-		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
-	}
-	
+*/
 }
