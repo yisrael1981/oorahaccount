@@ -78,7 +78,7 @@ return [
   
 	 'sqlsrv2' => array(
    'driver' => 'sqlsrv',
-   'host' => 'oorah-admire.gotdns.com', // Provide IP address here
+   'host' => 'oorah-admire', // Provide IP address here
    'database' => 'AdmireWebData',
    'username' => 'TuitionWeb',
    'password' => 'TuitionRemote',

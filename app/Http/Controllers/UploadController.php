@@ -84,13 +84,19 @@ $type = pathinfo(Input::file('image'), PATHINFO_EXTENSION);
 $base64 = base64_encode($img_data);
 
 
-      $destinationPath = 'C:\\inetpub\\sites\\thezone.org\\uploads\\'; // upload path
-      $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-      $fileName = rand(11111,99999).'.'.$extension; // renameing image
-      Input::file('image')->move($destinationPath, $fileName); // uploading file to given 
+$fp      = fopen($_FILES['image']['tmp_name'], 'r');
+$content = fread($fp, filesize($_FILES['image']['tmp_name']));
+$content = addslashes($content);
+fclose($fp);
+
+
+    //  $destinationPath = 'C:\\inetpub\\sites\\thezone.org\\uploads\\'; // upload path
+     // $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
+     // $fileName = rand(11111,99999).'.'.$extension; // renameing image
+     // Input::file('image')->move($destinationPath, $fileName); // uploading file to given 
 
 	$admire = new admire();
-		$IndInfoUpload =  $admire->DashboardUploadImage(37286, $destinationPath .$fileName );
+		$IndInfoUpload =  $admire->DashboardUploadImage(37286, $content );
 
 		return $IndInfoUpload;
 

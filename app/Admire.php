@@ -47,6 +47,14 @@ protected $connection = 'sqlsrv2';
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
 		return $databaseResponse;
 	}
+	public function DashboardFamilyEvent($familyid) {
+	$SqlConn = 
+		"EXEC [dbo].[Events_GetInvites_ActId ]
+		@ActID =  " . $familyid ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		return $databaseResponse;
+	}
 	public function DashboardIndividual($familyid) {
 	$SqlConn = 
 		"EXEC [dbo].[ActGetInds]

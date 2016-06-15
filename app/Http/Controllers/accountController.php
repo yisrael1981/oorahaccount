@@ -69,12 +69,12 @@ if ($validator->fails()) {
 		$familyAddress =  $admire->DashboardFamilyAddress($accountid);
 		$familyIndividuals =  $admire->DashboardIndividual($accountid);
 		$familytel =  $admire->DashboardFamilyTel($accountid);
-		$familyEvent = $admire->DashboardFamilyEvent($accountid);
+	//	$familyEvent = $admire->DashboardFamilyEvent($accountid);
 	return view('account.dashboardmain')
 	->with('familyNames',$familyNames)
 	->with('familyAddress',$familyAddress)
 	->with('TelLists',$familytel)
-	->with('familyEvents',$familyEvent)
+	//->with('familyEvents',$familyEvent)
 	->with('familyIndividuals',$familyIndividuals);
 	}
 	function showDashboardInd($indid) {

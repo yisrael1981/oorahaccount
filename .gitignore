@@ -8,3 +8,4 @@ Homestead.json
 /config/database
 *dwsync*
 app/Http/Controllers/Auth/_notes/dwsync.xml
+app/Http/_notes/dwsync.xml
