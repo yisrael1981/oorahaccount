@@ -10,7 +10,7 @@ Step 1: Browse to select a photo<br>
 
 Step 2: Click submit to upload photo
 </p>
-        {!! Form::open(array('url'=>'upload','method'=>'POST', 'files'=>true)) !!}
+        {!! Form::open(array('url'=>'account/upload','method'=>'POST', 'files'=>true)) !!}
         <?php
   if (isset($_GET['record']) ){
 
@@ -27,7 +27,7 @@ Step 2: Click submit to upload photo
         
           <div class="controls">
           {!! Form::file('image') !!}
-	  <p class="alert "><strong><i>{!!$errors->first('image')!!}</i></strong></p>
+	  <p class="alert ">{!!$errors->first('image')!!}</p>
 
 	@if(Session::has('error'))
 

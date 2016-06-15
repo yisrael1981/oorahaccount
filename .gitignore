@@ -7,3 +7,4 @@ Homestead.json
 *svn*
 /config/database
 *dwsync*
+app/Http/Controllers/Auth/_notes/dwsync.xml

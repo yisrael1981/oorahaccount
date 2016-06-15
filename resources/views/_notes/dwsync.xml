@@ -6,4 +6,6 @@
 <file name="upload.blade.php" server="207.97.219.193:2121/oorah/" local="131081538600000000" remote="131081538600000000" Dst="2" />
 <file name="todo.blade.php" server="207.97.219.193:2121/oorah/" local="131086793870346588" remote="131079979800000000" Dst="2" />
 <file name="uploadext.blade.php" server="207.97.219.193:2121/oorah/" local="131086793875076858" remote="131081643600000000" Dst="2" />
+<file name="upload.blade.php" server="207.97.219.193/www/newtuition/" local="131104352600001852" remote="131099808000000000" Dst="2" />
+<file name="uploadext.blade.php" server="207.97.219.193/www/newtuition/" local="131104352630386513" remote="131081643600000000" Dst="2" />
 </dwsync>
