@@ -8,10 +8,9 @@ if (!isset($_COOKIE['Username']) || $_COOKIE['Username'] == ""){
  
  if ($_COOKIE["LoginId"] != $application->LoginId ) {
 
-       header('Location: http://www.oorah.org/tuition/childlist2.asp'); 
+       header('Location: http://www.oorah.org/tuition/childlist.asp');
+ 
       }
-
-
     ?>
     <!DOCTYPE html>
     <html>

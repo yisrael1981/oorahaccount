@@ -1,4 +1,18 @@
+//general functions
+function ajaxpost(url,senddata,  returnedString) {
+	$.post( url, senddata)
+		.done(function( data ) {
+			if ($.trim(data) == "Success") {
+				alert(returnedString);
+				location.reload();
+			} else {
+					alert("Please check your information and try again");
+			}
+	});
+
+}
 //code for addresses
+
 $(function() {
 	$(".editbtnAddress").click(function (){
 
@@ -56,40 +70,18 @@ $('#sbtbutn.delete').show();
 	});
 	
 	$('#changedefaultbtn').click(function () {
-			$.post( "//oorah.org/account/sendaddressdefault.php", {'adrid' :$('input[name="defaultaddr"]:checked').val()} )
-  .done(function( data ) {
-  if ($.trim(data) == "Success") {
-		alert("Your information has been edited");
-		}
-  });
-
+		ajaxpost("//oorah.org/account/sendaddressdefault.php", {'adrid' :$('input[name="defaultaddr"]:checked').val()},"Your information has been edited")
+		
 		});
-	
-});
+	});
 
 
 $('#form1 .insert').click(function() {
-	$.post( "//oorah.org/account/sendaddress.php", $( "#form1" ).serialize() )
-  .done(function( data ) {
-  if ($.trim(data) == "Success") {
-		alert("Your information has been added");
-	location.reload();
-		} else {
-					alert("Please check your information and try again");
-			}
-  });
+	ajaxpost("//oorah.org/account/sendaddress.php", $( "#form1" ).serialize(),"Your information has been added!"  )
 });
 
 $('#form1 .edit,#form1 .delete').click(function() {
-	$.post( "//oorah.org/account/sendaddressedit.php", $( "#form1" ).serialize() )
-  .done(function( data ) {
-  if ($.trim(data) == "Success") {
-		alert("Your information has been edited");
-	location.reload();
-		} else {
-					alert("Please check your information and try again");
-			}
-  });
+	ajaxpost("//oorah.org/account/sendaddressedit.php", $( "#form1" ).serialize(),"Your information has been edited" )
  
 });
 //end address section
@@ -130,35 +122,20 @@ $('#sbtbutntel.delete').show();
 		});            
 	});
 
-$('#form2 .insert').click(function() {
+	$('#form2 .insert').click(function() {
+			postpage =  "//www.oorah.org/account/telnew.php";
+		if ($('#page').val() == "ind") {
+			postpage =  "//www.oorah.org/accounttelindnew.php";
+			
+			}
+		ajaxpost(postpage, $( "#form2" ).serialize() ,"Your information has been added");
+	});
 
-postpage =  "//www.oorah.org/account/telnew.php";
-	if ($('#page').val() == "ind") {
-		postpage =  "//www.oorah.org/accounttelindnew.php";
-		
-		}
-	$.post(postpage, $( "#form2" ).serialize() )
-  .done(function( data ) {
-  if ($.trim(data) == "Success") {
-		alert("Your information has been added");
-	location.reload();
-		}
-  });
-});
-
-$('#form2 .edit','#form2 .delete').click(function() {
-postpage =  "//www.oorah.org/account/teledit.php";
-	
-	$.post(postpage, $( "#form2" ).serialize() )
-  .done(function( data ) {
-  if ($.trim(data) == "Success") {
-		alert("Your information has been edited");
-	location.reload();
-		}
-  });
- 
-});
-});
+	$('#form2 .edit','#form2 .delete').click(function() {
+		ajaxpost( "//www.oorah.org/account/teledit.php",  $( "#form2" ).serialize() ,"Your information has been edited");
+	 
+	});
+});//end general function
 
 
 //end telephone section

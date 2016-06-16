@@ -77,7 +77,7 @@ if ($validator->fails()) {
 	//->with('familyEvents',$familyEvent)
 	->with('familyIndividuals',$familyIndividuals);
 	}
-	function showDashboardInd($indid) {
+	function showDashboardInd($parentid, $indid) {
 	
 	setcookie('indid', $indid, time()+60*60*24*365, '/', 'oorah.org', false);
 	$admire = new admire();
@@ -86,6 +86,7 @@ if ($validator->fails()) {
 		$IndAffiliation = $admire->DashboardIndAffiliation($indid);
 		
 return view('account.dashboardInd')
+	->with('parentid', $parentid)
 	->with('IndInfo',$IndInfo)
 	->with('TelLists',$IndTels)
 	->with('IndAffiliations',$IndAffiliation)

@@ -5,7 +5,10 @@ Someone hit an error on the  tuition page
 print_r($error);
 echo '<br>';
 if (isset($request) ) {
-print_r($request);
+	foreach ($request as $key=>$val)
+  {
+    echo $key.'='.$val."<br>\n";
+  }
 }
 echo '<br>';
 if (isset($data) ) {

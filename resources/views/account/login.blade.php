@@ -1,32 +1,22 @@
-<!doctype html>
-<html>
-<head>
-<title>Look at me Login</title>
-</head>
-<body>
+	@extends('layout.mainAccounts')
+@section('content')
+<div class="col-md-4 col-md-offset-4" style="margin-top:10em;">
 
 {{ Form::open(array('url' => 'account/login')) }}
-<h1>Login</h1>
-@if(Session::has('message'))
+<h2 style="text-align:center;">Login</h2>
 
-	<p class="alert alert-danger">{!! Session::get('message') !!}</p>
-	@endif
-<p>
-    {{ $errors->first('accountnum') }}
-    {{ $errors->first('lastname') }}
-</p>
-
-
-<p>
+<div class="form-group">
     {{ Form::label('accountnum', 'Account Number') }}
-    {{ Form::text('accountnum', '204095',[ 'required']) }}
-</p>
+    {{ Form::text('accountnum', '204095',[ 'required', 'class'=>'form-control']) }}
+</div>
 
 
-<p>
+<div class="form-group">
     {{ Form::label('lastname', 'Last Name') }}
-    {{ Form::text('lastname' , 'pultman', ['required']) }}
-</p>
+    {{ Form::text('lastname' , 'pultman', ['required', 'class'=>'form-control']) }}
+</div>
 
-<p>{{ Form::submit('Submit!') }}</p>
+<p>{{ Form::submit('Log in ') }}</p>
 {{ Form::close() }}
+</div>
+@stop

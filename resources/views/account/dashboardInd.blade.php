@@ -13,18 +13,16 @@
 		$dob = new DateTime($IndInfoLi->DOB);
 echo $dob->format('d-m-Y');?>
 	@else
-			   @include('account.partial.dob') 
-
-	@endif
-				   @include('account.partial.dob') 
-
+		 @include('account.partial.dob') 
+	@endif	  
+ 
 <br>
 @if ($IndInfoLi->ImageThumb !="") 
 
 	<img style="max-width:250px;" src="data:image/jpeg;base64,<?php base64_encode($IndInfoLi->ImageThumb ); ?>"/>
-	<br>{{ link_to_route('accountupload', 'Update Image',$IndInfoLi->IND_ID ) }}
+	<br><!--{{ link_to_route('accountupload', 'Update Image',$IndInfoLi->IND_ID ) }}-->
 	@else
-		<br>{{ link_to_route('accountupload', 'Add Image',$IndInfoLi->IND_ID) }}
+		<br><!--{{ link_to_route('accountupload', 'Add Image',$IndInfoLi->IND_ID) }}-->
 		@endif
 
 @endforeach
@@ -50,6 +48,9 @@ echo $dob->format('d-m-Y');?>
 
 		@endforeach
 <ul>
-<li><a href="https://www.thezone.org/">Apply to camp</a></li>
+<!-- <li><a href="https://www.thezone.org/">Apply to camp</a></li> -->
 </ul>
+@stop
+@footerlink
+{{link_to_route('accountInddashboard', 'Back to Main Dashboard', $parentid)}}">
 @stop

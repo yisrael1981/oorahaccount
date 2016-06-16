@@ -15,7 +15,7 @@
       <h1>@yield('sectionname')</h1>
 
     @if (Session::has('message'))
-<div class="alert alert-success">
+<div class="alert alert-danger">
 {{{ Session::get('message') }}}
 </div>
 @endif 
@@ -31,7 +31,10 @@
 
        @yield('content')
        </div>
-<footer></footer>       
+<footer>
+@yield('footerlink')
+
+</footer>
  <script  src="{{asset('js/accounts.js')}}">    </script>
       </body>
     </html>

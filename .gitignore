@@ -4,8 +4,10 @@
 Homestead.yaml
 Homestead.json
 .env
-*svn*
+.svn/
 /config/database
-*dwsync*
+*dwsync.xml
 app/Http/Controllers/Auth/_notes/dwsync.xml
 app/Http/_notes/dwsync.xml
+*.settings
+sftp-config.json

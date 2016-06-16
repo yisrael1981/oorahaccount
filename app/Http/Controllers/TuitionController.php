@@ -437,7 +437,7 @@ $tuition ->SchoolYear=Input::get('SchoolYear');
 $tuition ->PassportID=Input::get('PassportID');
 			$tuition->update();
 //			return 'Information has been updated';
-return Redirect::to('http://www.oorah.org/tuition/childlist2.asp');
+return Redirect::to('http://www.oorah.org/tuition/childlist.asp');
 		//return Redirect::route('events.index')->with('message','Event was updated');
 			}
 			
