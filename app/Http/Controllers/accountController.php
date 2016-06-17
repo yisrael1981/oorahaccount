@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 class accountController extends Controller
 {
 
+
 function showlogin() {
 return view('account.login');
 
@@ -37,27 +38,16 @@ if ($validator->fails()) {
         ->withInput(); // send back the input (not the password) so that we can repopulate the form
 } else {
 
-    // create our user data for the authentication
-    $userdata = array(
-        'accountnum'     => Input::get('accountnum'),
-        'lastname'  => Input::get('lastname')
-    );
-
-		$admire = new admire();
-		$database =  $admire->LoginProcedure($userdata);
+ 		$admire = new admire();
+		$response =  $admire->LoginProcedure(Input::all());
 		
 
-		if($database[0]->Valid != 1)
+		if($response[0]->Valid != 1)
 		{
 		return redirect()->back()->withInput()->with('message', 'Invalid Username and password.');
         
 		}
-				 setcookie("account", Input::get('accountnum'));
-
-		return redirect()->route('accountmaindashboard', Input::get('accountnum'));
-
-		
-		//return $database;
+			return redirect()->route('accountmaindashboard', Input::get('accountnum'));
 		}//else validates
 	} //end check login
 	
@@ -65,48 +55,41 @@ if ($validator->fails()) {
 	function showDashboardMain($accountid) {
 
 		$admire = new admire();
-		$familyNames =  $admire->DashboardFamilyNames($accountid);
-		$familyAddress =  $admire->DashboardFamilyAddress($accountid);
-		$familyIndividuals =  $admire->DashboardIndividual($accountid);
-		$familytel =  $admire->DashboardFamilyTel($accountid);
-	//	$familyEvent = $admire->DashboardFamilyEvent($accountid);
-	return view('account.dashboardmain')
-	->with('familyNames',$familyNames)
-	->with('familyAddress',$familyAddress)
-	->with('TelLists',$familytel)
-	//->with('familyEvents',$familyEvent)
-	->with('familyIndividuals',$familyIndividuals);
-	}
+	
+		return view('account.dashboardmain')
+		->with('familyNames', $admire->DashboardFamilyNames($accountid) )
+		->with('familyAddress', $admire->DashboardFamilyAddress($accountid))
+		->with('TelLists', $admire->DashboardFamilyTel($accountid))
+		//->with('familyEvents',$admire->DashboardFamilyEvent($accountid))
+		->with('familyIndividuals',$admire->DashboardIndividual($accountid));
+		}
 	function showDashboardInd($parentid, $indid) {
 	
-	setcookie('indid', $indid, time()+60*60*24*365, '/', 'oorah.org', false);
+	
 	$admire = new admire();
-		$IndInfo =  $admire->DashboardIndGetInfo($indid);
-		$IndTels =  $admire->DashboardIndTel($indid);
-		$IndAffiliation = $admire->DashboardIndAffiliation($indid);
-		
-return view('account.dashboardInd')
+	
+	return view('account.dashboardInd')
 	->with('parentid', $parentid)
-	->with('IndInfo',$IndInfo)
-	->with('TelLists',$IndTels)
-	->with('IndAffiliations',$IndAffiliation)
-;
-
+	->with('IndInfo',$admire->DashboardIndGetInfo($indid))
+	->with('TelLists',  $admire->DashboardIndTel($indid))
+	->with('IndAffiliations',$admire->DashboardIndAffiliation($indid))
+	;
 	}
 	
 	function showUpload() {
 	return view('account.upload');
 	}
 	
-	function doUpload() {
-	// read image from temporary file
-$img = Image::make($_FILES['image']['tmp_name']);
+	
+	function insertNewAddress(Request $request){
+		$admire = new admire();
+		$response =  $admire->InsertNewAddress(Input::all());
+		
+		if($response[0]->AdrID ){
+			return 'Success';
+		}
+		
+		return 'Error';
 
-// resize image
-$img->fit(300, 200);
-
-// save image
-//$img->save('foo/bar.jpg');
-return $img;
-	}
+		}//end new address
 } // end extends controller

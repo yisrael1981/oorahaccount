@@ -47,7 +47,7 @@
 
 
 
-<form action="" method="post" id="form1">
+{{ Form::open(array('url' => '', 'id'=>'form1','method'=>'POST')) }}
 <input type="hidden" value="" name="adrid" id="adrid"/>
 <input type="hidden" value="{{$familyName->ACT_ID }}" name="accountid" id="accountid"/>
 
@@ -86,7 +86,7 @@
 <input type="button" id="sbtbutn" class="delete" value="Delete Address" style="display:none;">
 
 </div>
-</form>
+{{Form::close()}}
 
 
 

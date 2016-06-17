@@ -6,7 +6,12 @@ function ajaxpost(url,senddata,  returnedString) {
 				alert(returnedString);
 				location.reload();
 			} else {
+				if (data == "Error") {
 					alert("Please check your information and try again");
+				} else {
+					alert(data);
+				}
+
 			}
 	});
 
@@ -77,7 +82,7 @@ $('#sbtbutn.delete').show();
 
 
 $('#form1 .insert').click(function() {
-	ajaxpost("//oorah.org/account/sendaddress.php", $( "#form1" ).serialize(),"Your information has been added!"  )
+	ajaxpost('../sendaddress', $( "#form1" ).serialize(),"Your information has been added!"  )
 });
 
 $('#form1 .edit,#form1 .delete').click(function() {

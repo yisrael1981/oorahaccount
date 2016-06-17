@@ -8,6 +8,7 @@ class admire extends Model
 {
 protected $connection = 'sqlsrv2';
 	
+
 	public function LoginProcedure($userdata){
 
 		//$accountid ="204095";
@@ -39,6 +40,29 @@ protected $connection = 'sqlsrv2';
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
 		return $databaseResponse;
 	}
+	
+public function InsertNewAddress ($input) {
+	        $parts = explode(" ", $input['Address']);
+$number = array_shift($parts);
+$street = implode(" ", $parts);
+	       
+	        $SqlConn = 
+		"EXEC [dbo].[AdrInsert]
+		@ActID = '" . $input['accountid'] ."',
+		@Type = '" . $input['Type'] ."',
+		@Number = 	'" . $number ."',
+		@Street = '" . $street ."',
+		@City = '" . $input['City'] ."',
+		@Country ='" . $input['Country'] ."',
+		@State = '" . $input['State'] ."',
+		@Zip = '" . $input['Zip'] ."',
+		@InActive = " . $input['InActive']   ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		//$response = $databaseResponse->adrId;
+		return $databaseResponse;
+	}
+	
 	public function DashboardFamilyTel($familyid) {
 	$SqlConn = 
 		"EXEC [dbo].[ActGetTels]
