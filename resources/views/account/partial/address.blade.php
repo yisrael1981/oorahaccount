@@ -50,7 +50,7 @@
 {{ Form::open(array('url' => '', 'id'=>'form1','method'=>'POST')) }}
 <input type="hidden" value="" name="adrid" id="adrid"/>
 <input type="hidden" value="{{$familyName->ACT_ID }}" name="accountid" id="accountid"/>
-
+<div id="hideDelete">
 <div class="form-group">
 <label for="type">Type of Address</label>
 <select name="Type" id="TypeAddress" class="form-control">
@@ -78,6 +78,7 @@
 <div class="form-group">
 <label for="Country">Country</label>
 <input type="text" name="Country" id='Country' class="form-control">
+</div>
 </div>
 <input type="hidden" name="InActive" value="0" id="InActive" />
 <div class="form-group">

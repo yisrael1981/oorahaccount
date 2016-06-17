@@ -87,18 +87,30 @@ if ($validator->fails()) {
 	return view('account.upload');
 	}
 	
-	
-	function insertNewAddress(Request $request){
+	function InsertNewAddress(Request $request) {
+ 		return $this->updateInformation(Input::all(),  $this->addressRules, 'InsertNewAddress');
+	}
 
-  // doing the validation, passing post data, rules and the messages
-  $validator = Validator::make(Input::all(),  $this->addressRules);
-  if ($validator->fails()) {
-    // send back to the page with the input data and errors
-      return $validator->errors()->all();
-  }
+function EditAddress(Request $request) {
+ 		return $this->updateInformation(Input::all(),  $this->addressRules, 'EditAddress');
+	}
+	function DeleteAddress(Request $request) {
+ 		return $this->updateInformation(Input::all(),  [] , 'EditAddress');
+	}
+
+	function DefaultAddress(Request $request) {
+ 		return $this->updateInformation(Input::all(),  [] , 'DefaultAddress');
+	}
+
+	protected function updateInformation($request, $rules, $procName){
+
+	    $validator = Validator::make($request,  $rules);
+	  if ($validator->fails()) {
+	          return $validator->errors()->all();
+	  }
 
 		$admire = new admire();
-		$response =  $admire->InsertNewAddress(Input::all());
+		$response =  $admire->$procName($request);
 		
 		if($response[0]){
 			return 'Success';

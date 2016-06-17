@@ -22,75 +22,74 @@ function ajaxpost(url,senddata,  returnedString) {
 }
 //code for addresses
 
-$(function() {
-	$(".editbtnAddress").click(function (){
+	$(function() {
+$(".editbtnAddress").click(function (){
+		addressID = $(this).attr('data-type');	
+		// the pull all data attributes from  div+number data-type[]
+		$('#InActive').val('0');
+		$('#TypeAddress option[value=' + $('div[id=' + addressID + '] span[data-type="type"]').text()+']').attr("selected",true);
 
-	addressID = $(this).attr('data-type');	
-	// the pull all data attributes from  div+number data-type[]
-$('#InActive').val('0');
-$('#TypeAddress option[value=' + $('div[id=' + addressID + '] span[data-type="type"]').text()+']').attr("selected",true);
-
-$('#Address').val( $('div[id=' + addressID + '] span[data-type="address"]').text() );
-$('#City').val( $('div[id=' + addressID+ '] span[data-type="city"]').text());
-$('#State').val( $('div[id=' + addressID+ '] span[data-type="state"]').text());
-$('#Zip').val( $('div[id=' + addressID+ '] span[data-type="zip"]').text());
-$('#Country').val($('div[id=' + addressID + '] span[data-type="country"]').text());
-$('#adrid').val(addressID);
-$('#sbtbutn.edit').show();
-$('#sbtbutn.insert, #sbtbutn.delete').hide();
-		});
+		$('#Address').val( $('div[id=' + addressID + '] span[data-type="address"]').text() );
+		$('#City').val( $('div[id=' + addressID+ '] span[data-type="city"]').text());
+		$('#State').val( $('div[id=' + addressID+ '] span[data-type="state"]').text());
+		$('#Zip').val( $('div[id=' + addressID+ '] span[data-type="zip"]').text());
+		$('#Country').val($('div[id=' + addressID + '] span[data-type="country"]').text());
+		$('#adrid').val(addressID);
+		$('#sbtbutn.edit').show();
+		$('#sbtbutn.insert, #sbtbutn.delete').hide();
+	});
 		//delete script
 
-		$(".delbtnAddress").click(function (){
+	$(".delbtnAddress").click(function (){
 
-//if default, do not allow to delete
-if ( $('input[name="defaultaddr"]:checked').val() == $(this).attr('data-type') ) {
-		alert("You cannot delete an address that is default. Please switch the default address before deletion");
-		return false;
-		
-			}
-		//get number after word edit			
-	// the pull all data attributes from  div+number data-type[]
-$('#InActive').val('1');
-	addressID = $(this).attr('data-type');	
+		//if default, do not allow to delete
+		if ( $('input[name="defaultaddr"]:checked').val() == $(this).attr('data-type') ) {
+				alert("You cannot delete an address that is default. Please switch the default address before deletion");
+				return false;
+		}
+				//get number after word edit			
+			// the pull all data attributes from  div+number data-type[]
+		$('#InActive').val('1');
+			addressID = $(this).attr('data-type');	
+		$('#hideDelete').hide();
+		$('#hideDelete').before($('div[id=' + addressID + '] span[data-type="address"]').text() + "<br>" +
+			 $('div[id=' + addressID + '] span[data-type="city"]').text() + ' '
+			 + $('div[id=' + addressID + '] span[data-type="state"]').text() +
+			  ' ' + $('div[id=' + addressID + '] span[data-type="zip"]').text());
 
-$('#TypeAddress option[value=' + $('div[id=' + addressID+ '] span[data-type="type"]').text()+']').attr("selected",true);
+		$('#adrid').val(addressID);
+		$('#sbtbutn.edit, #sbtbutn.insert').hide();
+		$('#sbtbutn.delete').show();
 
-$('#Address').val( $('div[id=' + addressID + '] span[data-type="address"]').text() );
-$('#City').val( $('div[id=' + addressID + '] span[data-type="city"]').text());
-$('#State').val( $('div[id=' + addressID + '] span[data-type="state"]').text());
-$('#Zip').val( $('div[id=' + addressID + '] span[data-type="zip"]').text());
-$('#Country').val($('div[id=' +addressID + '] span[data-type="country"]').text());
-$('#adrid').val(addressID);
-$('#sbtbutn.edit, #sbtbutn.insert').hide();
-$('#sbtbutn.delete').show();
-
-
-		});
+	});
 		
 	$('#newaddressbtn').click(function() {
 		$('#sbtbutn.edit,#sbtbutn.delete').hide();
 		$('#sbtbutn.insert').show();
 
 		  $("#form1 input[type='text']").each(function() {
-	$(this).val('') ;
+		$(this).val('') ;
 		});    
 		$('#InActive').val('0');        
 	});
 	
 	$('#changedefaultbtn').click(function () {
-		ajaxpost("//oorah.org/account/sendaddressdefault.php", {'adrid' :$('input[name="defaultaddr"]:checked').val()},"Your information has been edited")
+		ajaxpost("../senddefaultaddress", {'adrid' :$('input[name="defaultaddr"]:checked').val(),'accountid':$('#accountid').text() },"Your information has been edited")
 		
 		});
 	});
 
 
 $('#form1 .insert').click(function() {
-	ajaxpost('../sendaddress', $( "#form1" ).serialize(),"Your information has been added!"  )
+	ajaxpost('../sendnewaddress', $( "#form1" ).serialize(),"Your information has been added!"  )
 });
 
-$('#form1 .edit,#form1 .delete').click(function() {
-	ajaxpost("//oorah.org/account/sendaddressedit.php", $( "#form1" ).serialize(),"Your information has been edited" )
+$('#form1 .edit').click(function() {
+	ajaxpost("../sendeditaddress", $( "#form1" ).serialize(),"Your information has been edited" )
+ 
+});
+$('#form1 .delete').click(function() {
+	ajaxpost("../senddeleteaddress", $( "#form1" ).serialize(),"Your information has been deleted" )
  
 });
 //end address section

@@ -62,11 +62,41 @@ $street = implode(" ", $parts);
 		//$response = $databaseResponse->adrId;
 		return $databaseResponse;
 	}
-	
+	public function EditAddress ($input) {
+		$parts = explode(" ", $input['Address']);
+		$number = array_shift($parts);
+		$street = implode(" ", $parts);
+			       
+	    $SqlConn = 
+		"EXEC [dbo].[AdrUpdate]
+		@AdrID = '" . $input['adrid'] ."',
+		@Type = '" . $input['Type'] ."',
+		@Number = 	'" . $number ."',
+		@Street = '" . $street ."',
+		@City = '" . $input['City'] ."',
+		@Country ='" . $input['Country'] ."',
+		@State = '" . $input['State'] ."',
+		@Zip = '" . $input['Zip'] ."',
+		@InActive = " . $input['InActive']   ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		//$response = $databaseResponse->adrId;
+		return $databaseResponse;
+	}
+	public function DefaultAddress($input) {
+	$SqlConn = 
+		"EXEC [dbo].[ActMarkAdrAsDefault]
+		@ActID =  " . $input['accountid'] .
+		", @AdrID  = " . $input['adrid']  ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		return $databaseResponse;
+	}
+
 	public function DashboardFamilyTel($familyid) {
 	$SqlConn = 
 		"EXEC [dbo].[ActGetTels]
-		@ActID =  " . $familyid ;
+		@ActID =  " . $familyid  ;
 
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
 		return $databaseResponse;

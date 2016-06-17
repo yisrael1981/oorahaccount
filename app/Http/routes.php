@@ -39,14 +39,17 @@ return view('uploadext');
 
       //account management section
 
-Route::get('account/login', array('uses' => 'accountController@showLogin', 'as'=>'accountlogin'));
+Route::resource('account', 'AccountController');
 
+Route::get('account/login', array('uses' => 'accountController@showLogin', 'as'=>'accountlogin'));
+Route::post('account/login', array('uses' => 'accountController@doLogin'));
 Route::get('account/dashboardmain/{id}', array('uses' => 'accountController@showDashboardMain','as'=>'accountmaindashboard'));
 Route::get('account/dashboardind/{parentid}/{id}', array('uses' => 'accountController@showDashboardInd','as'=>'accountInddashboard'));
 Route::get('account/upload/{id}', array('uses' => 'accountController@showUpload', 'as'=>'accountupload'));
 Route::post('account/upload', array('uses' => 'UploadController@uploadFromAccounts'));
 
-
-Route::post('account/login', array('uses' => 'accountController@doLogin'));
-Route::post('account/sendaddress', array('uses'=>'accountController@insertNewAddress' ));
-Route::resource('account', 'AccountController');
+//ajax proc routes
+Route::post('account/sendnewaddress', array('uses'=>'accountController@insertNewAddress' ));
+Route::post('account/sendeditaddress', array('uses'=>'accountController@editAddress' ));
+Route::post('account/senddeleteaddress', array('uses'=>'accountController@deleteAddress' ));
+Route::post('account/senddefaultaddress', array('uses'=>'accountController@defaultAddress' ));

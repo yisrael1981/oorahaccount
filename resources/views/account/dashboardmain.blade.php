@@ -1,9 +1,10 @@
 	@extends('layout.mainAccounts')
 @section('content')
 
-<h2>Dashboard</h2>
 
 	@foreach ($familyNames as $familyName)
+<h2>Dashboard - Account #<span id="accountid">{{$familyName->ACT_ID }}</span></h2>
+
 	 {{$familyName->HisTitle }}  {{$familyName->HisName }} {{$familyName->LastName }} 
 <br>
  {{$familyName->HerTitle }}  {{$familyName->HerName }} {{$familyName->LastName }} 
