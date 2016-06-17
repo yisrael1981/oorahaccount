@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Input;
 class accountController extends Controller
 {
 
+	protected $addressRules = [
+		'Address'=>'required|max:50',
+		'City'=>'required|max:40',
+		'State'=>'required|max:20',
+		'Zip'=>'required|max:15',
+		'Country'=>'required|max:20'		
+	];
 
 function showlogin() {
 return view('account.login');
@@ -82,10 +89,18 @@ if ($validator->fails()) {
 	
 	
 	function insertNewAddress(Request $request){
+
+  // doing the validation, passing post data, rules and the messages
+  $validator = Validator::make(Input::all(),  $this->addressRules);
+  if ($validator->fails()) {
+    // send back to the page with the input data and errors
+      return $validator->errors()->all();
+  }
+
 		$admire = new admire();
 		$response =  $admire->InsertNewAddress(Input::all());
 		
-		if($response[0]->AdrID ){
+		if($response[0]){
 			return 'Success';
 		}
 		

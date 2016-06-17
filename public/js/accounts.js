@@ -13,7 +13,11 @@ function ajaxpost(url,senddata,  returnedString) {
 				}
 
 			}
-	});
+	})
+  .fail(function() {
+    alert("Please check your information and try again");
+  })
+	;
 
 }
 //code for addresses
