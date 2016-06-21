@@ -41,7 +41,7 @@ return view('uploadext');
 
 Route::resource('account', 'AccountController');
 
-Route::get('account/login', array('uses' => 'accountController@showLogin', 'as'=>'accountlogin'));
+Route::get('account/login', array('uses' => 'accountController@show', 'as'=>'accountlogin'));
 Route::post('account/login', array('uses' => 'accountController@doLogin'));
 Route::get('account/dashboardmain/{id}', array('uses' => 'accountController@showDashboardMain','as'=>'accountmaindashboard'));
 Route::get('account/dashboardind/{parentid}/{id}', array('uses' => 'accountController@showDashboardInd','as'=>'accountInddashboard'));
@@ -53,3 +53,7 @@ Route::post('account/sendnewaddress', array('uses'=>'accountController@insertNew
 Route::post('account/sendeditaddress', array('uses'=>'accountController@editAddress' ));
 Route::post('account/senddeleteaddress', array('uses'=>'accountController@deleteAddress' ));
 Route::post('account/senddefaultaddress', array('uses'=>'accountController@defaultAddress' ));
+Route::post('account/sendnewtelaccount', array('uses'=>'accountController@newTelAccount' ));
+Route::post('account/sendnewtelind', array('uses'=>'accountController@newTelInd' ));
+Route::post('account/sendedittel', array('uses'=>'accountController@editTel' ));
+Route::post('account/newdob', array('uses'=>'accountController@newDOB' ));

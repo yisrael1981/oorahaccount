@@ -101,6 +101,38 @@ $street = implode(" ", $parts);
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
 		return $databaseResponse;
 	}
+		public function NewAccountTel($input) {
+	$SqlConn = 
+		"EXEC	[dbo].[ActTelInsert]
+		@ActID = ". trim($input['accountid']) .",
+		@Type = '". $input['Type'] ."',
+		@Tel  = ".$input['Telephone']  ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		return $databaseResponse;
+	}
+	public function NewIndTel($input) {
+	$SqlConn = 
+		"EXEC	[dbo].[IndTelInsert]
+		@ActID = ". trim($input['accountid']) .",
+		@IndID  = ". $input['indid'] .",
+		@Type = '". $input['Type'] ."',
+		@Tel  = '".$input['Telephone']  ."'" ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		return $databaseResponse;
+	}
+	public function EditTel($input) {
+	$SqlConn = 
+		"EXEC	[dbo].[TelUpdate]
+		@TelID  = ".$input['telid'].",
+		@Type =  '". $input['Type'] ."',
+		@Tel   = '".$input['Telephone'] . "',
+		@Active = " . $input['active']  ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		return $databaseResponse;
+	}
 	public function DashboardFamilyEvent($familyid) {
 	$SqlConn = 
 		"EXEC [dbo].[Events_GetInvites_ActId ]
@@ -152,5 +184,15 @@ $street = implode(" ", $parts);
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
 		return $databaseResponse;
 	}
+	public function NewDOB ($input) {
+	$SqlConn = " EXEC	[dbo].[IndUpdateInfo]
+		@IndID  = ". $input['indid']. ",
+		@DOB = '" . $input['DOB'] ."',
+		@Image  = NULL,
+		@Thumb = NULL" ;
 	
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		return $databaseResponse;
+	}	
 }
+

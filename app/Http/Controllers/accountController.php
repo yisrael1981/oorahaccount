@@ -10,6 +10,7 @@ use Validator;
 use Redirect;
 
 use Illuminate\Support\Facades\Input;
+
 class accountController extends Controller
 {
 
@@ -21,10 +22,14 @@ class accountController extends Controller
 		'Country'=>'required|max:20'		
 	];
 
-function showlogin() {
-return view('account.login');
+	protected $telRules = [
+	'Telephone' =>'required'
+	];
 
-}
+	function show() {
+		return view('account.login');
+
+	}
 	
 	 function doLogin()
 	{
@@ -102,6 +107,19 @@ function EditAddress(Request $request) {
  		return $this->updateInformation(Input::all(),  [] , 'DefaultAddress');
 	}
 
+	function newTelAccount() {
+		return $this->updateInformation(Input::all(),  $this->telRules, 'NewAccountTel');	
+	}
+
+	function newTelInd(){
+		return $this->updateInformation(Input::all(),  $this->telRules , 'NewIndTel');	
+	}
+	function EditTel(){
+		return $this->updateInformation(Input::all(),  $this->telRules , 'EditTel');	
+	}
+	function  newDOB(){
+		return $this->updateInformation(Input::all(),  ['DOB'=>'required|date'] , 'NewDOB');		
+	}
 	protected function updateInformation($request, $rules, $procName){
 
 	    $validator = Validator::make($request,  $rules);

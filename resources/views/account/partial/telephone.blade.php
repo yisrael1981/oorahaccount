@@ -32,9 +32,18 @@
 
 
 
-<form action="" method="post" id="form2">
+{{ Form::open(array('url' => '', 'id'=>'form2','method'=>'POST')) }}
 <input type="hidden" value="" name="telid" id="telid"/>
-
+ <input type="hidden" value="
+@if (isset($parentid) )
+  {{$parentid}}
+@else
+  {{$familyName->ACT_ID}}
+@endif
+ " name="accountid" id="accountid"/>
+@if (isset($IndInfoLi) )
+ <input type="hidden" value="{{$IndInfoLi->IND_ID }}" name="indid" id="indid"/>
+@endif
 <div class="form-group">
 <label for="type">Type of Contact</label>
 <select name="Type" id="Type" class="form-control">
@@ -56,7 +65,7 @@
 
 
 </div>
-</form>
+{{Form::close()}}
 
 
 

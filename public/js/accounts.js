@@ -1,6 +1,8 @@
 //general functions
 function ajaxpost(url,senddata,  returnedString) {
-	$.post( url, senddata)
+//local
+	//$.post( 'http://localhost/laravel/oorahaccount/public/account/' +url, senddata)
+	$.post( 'https://www.oorah.org/newtuition/public/account/' +url, senddata)
 		.done(function( data ) {
 			if ($.trim(data) == "Success") {
 				alert(returnedString);
@@ -74,28 +76,27 @@ $(".editbtnAddress").click(function (){
 	});
 	
 	$('#changedefaultbtn').click(function () {
-		ajaxpost("../senddefaultaddress", {'adrid' :$('input[name="defaultaddr"]:checked').val(),'accountid':$('#accountid').text() },"Your information has been edited")
+		ajaxpost("senddefaultaddress", {'adrid' :$('input[name="defaultaddr"]:checked').val(),'accountid':$('#accountid').text() },"Your information has been edited")
 		
 		});
+
+
+
+	$('#form1 .insert').click(function() {
+		ajaxpost('sendnewaddress', $( "#form1" ).serialize(),"Your information has been added!"  )
 	});
 
-
-$('#form1 .insert').click(function() {
-	ajaxpost('../sendnewaddress', $( "#form1" ).serialize(),"Your information has been added!"  )
-});
-
-$('#form1 .edit').click(function() {
-	ajaxpost("../sendeditaddress", $( "#form1" ).serialize(),"Your information has been edited" )
- 
-});
-$('#form1 .delete').click(function() {
-	ajaxpost("../senddeleteaddress", $( "#form1" ).serialize(),"Your information has been deleted" )
- 
-});
+	$('#form1 .edit').click(function() {
+		ajaxpost("sendeditaddress", $( "#form1" ).serialize(),"Your information has been edited" )
+	 
+	});
+	$('#form1 .delete').click(function() {
+		ajaxpost("senddeleteaddress", $( "#form1" ).serialize(),"Your information has been deleted" )
+	 
+	});
 //end address section
 //start telephone section 
 
-$(function() {
 	$(".edittelbtn").click(function (){
 telid=$(this).attr('data-type') ;
 $('#active').val('1');
@@ -110,14 +111,14 @@ $('#sbtbutntel.insert,#sbtbutntel.delete').hide();
 		//delete number
 		$(".deltelbtn").click(function (){
 
-telid=  $(this).attr('data-type');
+		telid=  $(this).attr('data-type');
 		$('#active').val('0');
-typeval= $('div[id=' + telid + '] span[data-type="type"]').text() ;
-$('#Type option[value=' + typeval+']').attr("selected",true);
-$('#Telephone').val( $('div[id=' + telid+ '] span[data-type="tel"]').text() );
-$('#telid').val(telid);
-$('#sbtbutntel.edit,#sbtbutntel.insert').hide();
-$('#sbtbutntel.delete').show();
+		typeval= $('div[id=' + telid + '] span[data-type="type"]').text() ;
+		$('#Type option[value=' + typeval+']').attr("selected",true);
+		$('#Telephone').val( $('div[id=' + telid+ '] span[data-type="tel"]').text() );
+		$('#telid').val(telid);
+		$('#sbtbutntel.edit,#sbtbutntel.insert').hide();
+		$('#sbtbutntel.delete').show();
 		});
 		
 		//insert new tel
@@ -131,19 +132,23 @@ $('#sbtbutntel.delete').show();
 	});
 
 	$('#form2 .insert').click(function() {
-			postpage =  "//www.oorah.org/account/telnew.php";
 		if ($('#page').val() == "ind") {
-			postpage =  "//www.oorah.org/accounttelindnew.php";
-			
-			}
-		ajaxpost(postpage, $( "#form2" ).serialize() ,"Your information has been added");
+			ajaxpost("sendnewtelind", $( "#form2" ).serialize() ,"Your information has been added");
+		} else {
+			ajaxpost("sendnewtelaccount", $( "#form2" ).serialize() ,"Your information has been added");
+		}
 	});
 
-	$('#form2 .edit','#form2 .delete').click(function() {
-		ajaxpost( "//www.oorah.org/account/teledit.php",  $( "#form2" ).serialize() ,"Your information has been edited");
-	 
+	$('#form2 .edit, #form2 .delete').click(function() {
+	 	ajaxpost( "sendedittel",  $( "#form2" ).serialize() ,"Your information has been edited");
+	
 	});
+	//date of birth
+	$('#formdb .insert').click(function() {
+		ajaxpost( "newdob",  $( "#formdb" ).serialize() ,"Your information has been edited");
+	});
+
 });//end general function
 
 
-//end telephone section
+//end telephone section 

@@ -12,10 +12,10 @@
       </div>
       <div class="modal-body">
 
+{{ Form::open(array('url' => '', 'id'=>'formdb','method'=>'POST')) }}
 
 
-<form action="" method="post" id="formdb">
-<input type="hidden" value="{{$IndInfoLi->IND_ID}}" name="IndID" id="IndID"/>
+<input type="hidden" value="{{$IndInfoLi->IND_ID}}" name="indid" id="indid"/>
 
 
 <div class="form-group">
@@ -26,25 +26,9 @@
 <input type="button" id="sbtbutndob" class="insert" value="Insert">
 
 </div>
-</form>
-
-
-
+{{Form::close()}}
     </div>
 
   </div>
 </div>
 </div>
-<script>
-$('#formdb .insert').click(function() {
-	$.post("dobnew.php", $( "#formdb" ).serialize() )
-  .done(function( data ) {
-  if ($.trim(data) == "Success") {
-		alert("Your information has been added");
-	location.reload();
-		}
-  });
-});
-
-
-</script>

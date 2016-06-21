@@ -1,4 +1,5 @@
-	@extends('layout.mainAccounts')
+@extends('layout.mainAccounts')
+
 @section('content')
 
 <h2>Dashboard</h2>
@@ -12,7 +13,7 @@
 		<?php 
 		$dob = new DateTime($IndInfoLi->DOB);
 echo $dob->format('d-m-Y');?>
-	@else
+		@else
 		 @include('account.partial.dob') 
 	@endif	  
  
@@ -51,6 +52,7 @@ echo $dob->format('d-m-Y');?>
 <!-- <li><a href="https://www.thezone.org/">Apply to camp</a></li> -->
 </ul>
 @stop
-@footerlink
-{{link_to_route('accountInddashboard', 'Back to Main Dashboard', $parentid)}}">
+
+@section('footerlink')
+{{link_to_route('accountmaindashboard', 'Back to Main Dashboard', $parentid) }}
 @stop
