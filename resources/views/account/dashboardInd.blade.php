@@ -4,7 +4,7 @@
 
 <h2>Dashboard</h2>
 
-@foreach ($IndInfo as $IndInfoLi)
+@foreach ($admire->DashboardIndGetInfo($indid) as $IndInfoLi)
 		 
  {{$IndInfoLi->FirstName }}    {{$IndInfoLi->LastName }}  
 	@if ($IndInfoLi->DOB != "")
@@ -19,8 +19,7 @@ echo $dob->format('d-m-Y');?>
  
 <br>
 @if ($IndInfoLi->ImageThumb !="") 
-
-	<img style="max-width:250px;" src="data:image/jpeg;base64,<?php base64_encode($IndInfoLi->ImageThumb ); ?>"/>
+<?php echo '<img style="max-width:250px;" src="data:image/jpeg;base64,'.base64_encode( $IndInfoLi->ImageThumb).'"/>';?>
 	<br><!--{{ link_to_route('accountupload', 'Update Image',$IndInfoLi->IND_ID ) }}-->
 	@else
 		<br><!--{{ link_to_route('accountupload', 'Add Image',$IndInfoLi->IND_ID) }}-->
@@ -33,7 +32,7 @@ echo $dob->format('d-m-Y');?>
 	<input type="hidden" name="page" value="ind" id="page"/>
     <br>
 <br><h2>Kiruv Associations</h2><br>
-	@foreach ($IndAffiliations as $IndAffiliation)
+	@foreach ($admire->DashboardIndAffiliation($indid) as $IndAffiliation)
 
 
 	{{$IndAffiliation->Type}} {{$IndAffiliation->Detail}}<br>

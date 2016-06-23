@@ -23,6 +23,15 @@ protected $connection = 'sqlsrv2';
 		return $databaseResponse;
 		
 	}
+		public function testnames () {
+	$SqlConn = 
+		"EXEC [dbo].[ActGetInfo]
+		@ActID =   204095";
+		//@ActID =  " . $familyid ;
+
+		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		return $databaseResponse;
+	}
 	
 	public function DashboardFamilyNames ($familyid) {
 	$SqlConn = 

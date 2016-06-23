@@ -3,7 +3,7 @@
  $addType = '';
 ?>
 
-	@foreach ($familyAddress as $familyAddressLi)
+	@foreach ($admire->DashboardFamilyAddress($accountid)  as $familyAddressLi)
 		
 	@if (strtolower($addType) != strtolower($familyAddressLi->Type ))
 

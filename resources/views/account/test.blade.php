@@ -10,7 +10,9 @@
  {{$familyName->HerTitle }}  {{$familyName->HerName }} {{$familyName->LastName }} 
 
 		@endforeach
-	<hr/>
+		@stop
+
+		<hr/>
 <div class="col-md-8">
 
   <!-- Nav tabs -->
@@ -25,6 +27,7 @@
     <div role="tabpanel" class="tab-pane address-tab active" id="address">
 	   @include('account.partial.address') 
 	</div>
+	
     <div role="tabpanel" class="tab-pane address-tab" id="phone">
 
 	   @include('account.partial.telephone') 
@@ -48,8 +51,3 @@
 
 	<ul>
 	</div>
-
-@stop
-@section('footerlink')
-
-@stop

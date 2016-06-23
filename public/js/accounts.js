@@ -2,7 +2,7 @@
 function ajaxpost(url,senddata,  returnedString) {
 //local
 	//$.post( 'http://localhost/laravel/oorahaccount/public/account/' +url, senddata)
-	$.post( 'https://www.oorah.org/newtuition/public/account/' +url, senddata)
+	$.post( '/newtuition/public/account/' +url, senddata)
 		.done(function( data ) {
 			if ($.trim(data) == "Success") {
 				alert(returnedString);

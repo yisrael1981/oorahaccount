@@ -67,24 +67,21 @@ if ($validator->fails()) {
 	function showDashboardMain($accountid) {
 
 		$admire = new admire();
-	
-		return view('account.dashboardmain')
-		->with('familyNames', $admire->DashboardFamilyNames($accountid) )
-		->with('familyAddress', $admire->DashboardFamilyAddress($accountid))
+	//return view('account.test', compact('admire'))
+		return view('account.dashboardmain', compact('admire'))
+		->with('accountid', $accountid)
 		->with('TelLists', $admire->DashboardFamilyTel($accountid))
-		//->with('familyEvents',$admire->DashboardFamilyEvent($accountid))
-		->with('familyIndividuals',$admire->DashboardIndividual($accountid));
+		;
 		}
 	function showDashboardInd($parentid, $indid) {
 	
 	
 	$admire = new admire();
 	
-	return view('account.dashboardInd')
+	return view('account.dashboardInd', compact('admire'))
 	->with('parentid', $parentid)
-	->with('IndInfo',$admire->DashboardIndGetInfo($indid))
+	->with('indid', $indid)
 	->with('TelLists',  $admire->DashboardIndTel($indid))
-	->with('IndAffiliations',$admire->DashboardIndAffiliation($indid))
 	;
 	}
 	
@@ -96,7 +93,7 @@ if ($validator->fails()) {
  		return $this->updateInformation(Input::all(),  $this->addressRules, 'InsertNewAddress');
 	}
 
-function EditAddress(Request $request) {
+	function EditAddress(Request $request) {
  		return $this->updateInformation(Input::all(),  $this->addressRules, 'EditAddress');
 	}
 	function DeleteAddress(Request $request) {

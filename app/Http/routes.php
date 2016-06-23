@@ -17,7 +17,7 @@ use App\InsertTuition;
 
 Route::get('/', function () {
  
-    return view('welcome');
+    return view('welcome', compact('admire'));
 });
 
 //tuition form section

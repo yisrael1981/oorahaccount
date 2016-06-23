@@ -12,3 +12,4 @@ app/Http/_notes/dwsync.xml
 *.settings
 sftp-config.json
 app/Exceptions/Handler.php
+app/Http/_notes/dwsync.xml
