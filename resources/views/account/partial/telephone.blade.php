@@ -34,13 +34,7 @@
 
 {{ Form::open(array('url' => '', 'id'=>'form2','method'=>'POST')) }}
 <input type="hidden" value="" name="telid" id="telid"/>
- <input type="hidden" value="
-@if (isset($parentid) )
-  {{$parentid}}
-@else
-  {{$familyName->ACT_ID}}
-@endif
- " name="accountid" id="accountid"/>
+ <input type="hidden" value="{{session('accountid')}}" name="accountid" id="accountid"/>
 @if (isset($IndInfoLi) )
  <input type="hidden" value="{{$IndInfoLi->IND_ID }}" name="indid" id="indid"/>
 @endif

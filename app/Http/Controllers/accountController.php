@@ -8,7 +8,8 @@ use App\Http\Requests;
 use App\Admire;
 use Validator;
 use Redirect;
-
+use App\User;
+use Auth;
 use Illuminate\Support\Facades\Input;
 
 class accountController extends Controller
@@ -30,9 +31,13 @@ class accountController extends Controller
 		return view('account.login');
 
 	}
-	
-	 function doLogin()
-	{
+	function destroy(Request $request) {
+			$request->session()->flush();
+			return view('account.logout');
+
+	}
+	 
+	 function doLogin()	{
 	
 	// validate the info, create rules for the inputs
 $rules = array(
@@ -48,7 +53,7 @@ if ($validator->fails()) {
     return redirect()->back()
         ->withErrors($validator) // send back all errors to the login form
         ->withInput(); // send back the input (not the password) so that we can repopulate the form
-} else {
+	} else {
 
  		$admire = new admire();
 		$response =  $admire->LoginProcedure(Input::all());
@@ -58,28 +63,41 @@ if ($validator->fails()) {
 		{
 		return redirect()->back()->withInput()->with('message', 'Invalid Username and password.');
         
-		}
-			return redirect()->route('accountmaindashboard', Input::get('accountnum'));
+		}/*
+		$user = new User;
+		$user->name= Input::get('lastname');
+		$user->id= Input::get('accountnum');
+
+		Auth::login($user);*/
+		 session(['accountid' => Input::get('accountnum') ]);
+		return redirect()->route('accountmaindashboard');
 		}//else validates
 	} //end check login
 	
 	
-	function showDashboardMain($accountid) {
+	function showDashboardMain() {
 
+
+		$this->checkloggedin();
 		$admire = new admire();
-	//return view('account.test', compact('admire'))
+
 		return view('account.dashboardmain', compact('admire'))
-		->with('accountid', $accountid)
-		->with('TelLists', $admire->DashboardFamilyTel($accountid))
+		->with('TelLists', $admire->DashboardFamilyTel(session('accountid')))
 		;
 		}
-	function showDashboardInd($parentid, $indid) {
 	
+function test(){
+$admire = new admire();
+			$response =  $admire->DashboardIndTel(37285);
+			return $response;
+}
+	function showDashboardInd( $indid) {
+	
+		$this->checkloggedin();
 	
 	$admire = new admire();
 	
 	return view('account.dashboardInd', compact('admire'))
-	->with('parentid', $parentid)
 	->with('indid', $indid)
 	->with('TelLists',  $admire->DashboardIndTel($indid))
 	;
@@ -134,4 +152,12 @@ if ($validator->fails()) {
 		return 'Error';
 
 		}//end new address
+
+		protected function checkloggedin(){
+			if ( session("accountid") == '') {
+				abort(403);
+
+			}
+
+		}
 } // end extends controller

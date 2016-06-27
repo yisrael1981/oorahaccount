@@ -161,10 +161,15 @@ $street = implode(" ", $parts);
 
 	public function DashboardIndGetInfo($indid){
 	$SqlConn = 
-		"EXEC [dbo].[IndGetInfo]
-		@IndID  =  " . $indid ;
+		"EXEC [dbo].[IndGetInfo]"
+		."@ActID  =  " . session('accountid') . ","
+		 ."@IndID  =  " . $indid ;
+
 
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		if ( count($databaseResponse) ==0 ){
+			abort(403);
+		}
 		return $databaseResponse;
 	}
 	public function DashboardIndTel($indid){
@@ -172,7 +177,9 @@ $street = implode(" ", $parts);
 		"EXEC [dbo].[IndGetTels]
 		@IndID  =  " . $indid ;
 
+
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		
 		return $databaseResponse;
 	}
 	public function DashboardIndAffiliation($indid){
