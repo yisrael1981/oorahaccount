@@ -39,12 +39,12 @@ return view('uploadext');
 
       //account management section
 
-Route::resource('account', 'AccountController');
+//Route::resource('account', 'AccountController');
 
 Route::get('account/login', array('uses' => 'accountController@show', 'as'=>'accountlogin'));
 Route::post('account/login', array('uses' => 'accountController@doLogin'));
-Route::get('account/dashboardmain/{id}', array('uses' => 'accountController@showDashboardMain','as'=>'accountmaindashboard'));
-Route::get('account/dashboardind/{parentid}/{id}', array('uses' => 'accountController@showDashboardInd','as'=>'accountInddashboard'));
+Route::get('account/dashboardmain/', array('uses' => 'accountController@showDashboardMain','as'=>'accountmaindashboard'));
+Route::get('account/dashboardind/{id}', array('uses' => 'accountController@showDashboardInd','as'=>'accountInddashboard'));
 Route::get('account/upload/{id}', array('uses' => 'accountController@showUpload', 'as'=>'accountupload'));
 Route::post('account/upload', array('uses' => 'UploadController@uploadFromAccounts'));
 
@@ -57,3 +57,14 @@ Route::post('account/sendnewtelaccount', array('uses'=>'accountController@newTel
 Route::post('account/sendnewtelind', array('uses'=>'accountController@newTelInd' ));
 Route::post('account/sendedittel', array('uses'=>'accountController@editTel' ));
 Route::post('account/newdob', array('uses'=>'accountController@newDOB' ));
+	
+Route::get('account/logout', array('as' => 'logout', 'uses' => 'accountController@destroy'));
+
+Route::get('account/test', array('as' => 'test', 'uses' => 'accountController@test'));
+	
+	Route::group(['middleware' => ['auth']], function () {
+
+		Route::get('test', [ function() {
+		return 'test';
+		}]);
+	}); //end auth router

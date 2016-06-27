@@ -31,8 +31,11 @@
 
        @yield('content')
        </div>
-<footer>
+<footer id="footer">
 @yield('footerlink')
+@if ( session('accountid') )
+| {{link_to_route('logout', 'Logout') }}
+@endif
 
 </footer>
  <script  src="{{asset('js/accounts.js')}}">    </script>

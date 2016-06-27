@@ -53,5 +53,5 @@ echo $dob->format('d-m-Y');?>
 @stop
 
 @section('footerlink')
-{{link_to_route('accountmaindashboard', 'Back to Main Dashboard', $parentid) }}
+{{link_to_route('accountmaindashboard', 'Back to Main Dashboard') }}
 @stop

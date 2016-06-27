@@ -1,13 +1,16 @@
 	@extends('layout.mainAccounts')
 @section('content')
 
-             
-	@foreach ($admire->DashboardFamilyNames($accountid) as $familyName)
-<h2>{{$familyName->LastName }} Account #<span id="accountid">{{$familyName->ACT_ID }}</span></h2>
-
+          
+	@foreach ($admire->DashboardFamilyNames(session('accountid')) as $familyName)
+<h2>{{$familyName->LastName }} Account #<span id="accountid">{{session('accountid')}}</span></h2>
+@if ($familyName->HisName != '')
 	 {{$familyName->HisTitle }}  {{$familyName->HisName }} {{$familyName->LastName }} 
 <br>
+@endif
+@if ($familyName->HerName  != '')
  {{$familyName->HerTitle }}  {{$familyName->HerName }} {{$familyName->LastName }} 
+ @endif
 
 		@endforeach
 	<hr/>
@@ -34,20 +37,25 @@
   </div>
 
 </div>
+<?php
+$indlists = $admire->DashboardIndividual(session('accountid'));
+  if ( count($indlists) > 0 ) { ?>
+
 <div class="col-md-4 sidebar">
 	<h3>Individuals</h3>
 	<ul>
 	
-@foreach ($admire->DashboardIndividual($accountid) as $familyIndividual)
+@foreach ( $indlists as $familyIndividual)
 		
 		
-<li id="{{$familyIndividual->IND_ID}}""><a href="../dashboardind/{{$familyName->ACT_ID }}/{{$familyIndividual->IND_ID}}">
+<li id="{{$familyIndividual->IND_ID}}""><a href="dashboardind/{{$familyIndividual->IND_ID}}">
    {{$familyIndividual->FirstName}}   {{$familyIndividual->LastName}}
 	</a> </li>
 @endforeach
 
 	<ul>
 	</div>
+	<?php } //end if has ind?>
 
 @stop
 @section('footerlink')
