@@ -1,4 +1,4 @@
-	@extends('layout.mainAccounts')
+@extends('layout.mainAccounts')
 @section('content')
 <div class="col-md-4 col-md-offset-4" style="margin-top:10em;">
 
@@ -7,13 +7,13 @@
 
 <div class="form-group">
     {{ Form::label('accountnum', 'Account Number') }}
-    {{ Form::text('accountnum', '204095',[ 'required', 'class'=>'form-control']) }}
+    {{ Form::text('accountnum', '27430',[ 'required', 'class'=>'form-control']) }}
 </div>
 
 
 <div class="form-group">
     {{ Form::label('lastname', 'Last Name') }}
-    {{ Form::text('lastname' , 'pultman', ['required', 'class'=>'form-control']) }}
+    {{ Form::text('lastname' , 'abrahamson', ['required', 'class'=>'form-control']) }}
 </div>
 
 <p>{{ Form::submit('Log in ') }}</p>

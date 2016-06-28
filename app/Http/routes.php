@@ -62,9 +62,3 @@ Route::get('account/logout', array('as' => 'logout', 'uses' => 'accountControlle
 
 Route::get('account/test', array('as' => 'test', 'uses' => 'accountController@test'));
 	
-	Route::group(['middleware' => ['auth']], function () {
-
-		Route::get('test', [ function() {
-		return 'test';
-		}]);
-	}); //end auth router

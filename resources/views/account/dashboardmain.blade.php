@@ -48,7 +48,7 @@ $indlists = $admire->DashboardIndividual(session('accountid'));
 @foreach ( $indlists as $familyIndividual)
 		
 		
-<li id="{{$familyIndividual->IND_ID}}""><a href="dashboardind/{{$familyIndividual->IND_ID}}">
+<li id="{{$familyIndividual->IND_ID}}"><a href="dashboardind/{{$familyIndividual->IND_ID}}">
    {{$familyIndividual->FirstName}}   {{$familyIndividual->LastName}}
 	</a> </li>
 @endforeach
@@ -56,7 +56,22 @@ $indlists = $admire->DashboardIndividual(session('accountid'));
 	<ul>
 	</div>
 	<?php } //end if has ind?>
+<hr style="clear:both;" />
+<div class="col-md-5">
+	
+<?php  $eventtype  = ''; ?>
 
+@foreach ( $admire->DashboardFamilyEvent(session('accountid')) as $familyEvents)
+		@if (strtolower($eventtype) != strtolower( $familyEvents->EventName))
+	<strong>{{$familyEvents->EventName}}</strong><br/>
+	<?php $eventtype = $familyEvents->EventName; ?>
+	@endif
+		
+<li >
+  {{$familyEvents->IND_FirstName	}}-  {{$familyEvents->Status}}  
+	 </li>
+@endforeach
+</div>
 @stop
 @section('footerlink')
 

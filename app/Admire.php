@@ -24,13 +24,29 @@ protected $connection = 'sqlsrv2';
 		
 	}
 		public function testnames () {
-	$SqlConn = 
-		"EXEC [dbo].[ActGetInfo]
-		@ActID =   204095";
-		//@ActID =  " . $familyid ;
+			$SqlConn = 
+"
+		EXEC [dbo].[IndGetInfo]"
+		."@ActID  =  327586,"
+		 ."@IndID  =  71107"
+
+		 ;
+
 
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
-		return $databaseResponse;
+ if ($databaseResponse->isEmpty()) {
+
+ 	return 'empty';
+ }
+
+if ($databaseResponse ) {
+	return 'empty';
+}
+		return  'full';
+		if ( count($databaseResponse) ==0 ){
+			abort(403);
+		}
+		//return $databaseResponse;
 	}
 	
 	public function DashboardFamilyNames ($familyid) {
@@ -161,12 +177,15 @@ $street = implode(" ", $parts);
 
 	public function DashboardIndGetInfo($indid){
 	$SqlConn = 
+		
 		"EXEC [dbo].[IndGetInfo]"
 		."@ActID  =  " . session('accountid') . ","
-		 ."@IndID  =  " . $indid ;
+		 ."@IndID  =  " . $indid 
+		 ;
 
 
 		$databaseResponse = \DB::connection('sqlsrv2')->select($SqlConn);
+		
 		if ( count($databaseResponse) ==0 ){
 			abort(403);
 		}

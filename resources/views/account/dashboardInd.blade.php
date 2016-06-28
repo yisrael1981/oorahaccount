@@ -18,36 +18,39 @@ echo $dob->format('d-m-Y');?>
 	@endif	  
  
 <br>
-@if ($IndInfoLi->ImageThumb !="") 
-<?php echo '<img style="max-width:250px;" src="data:image/jpeg;base64,'.base64_encode( $IndInfoLi->ImageThumb).'"/>';?>
-	<br><!--{{ link_to_route('accountupload', 'Update Image',$IndInfoLi->IND_ID ) }}-->
-	@else
-		<br><!--{{ link_to_route('accountupload', 'Add Image',$IndInfoLi->IND_ID) }}-->
-		@endif
+
 
 @endforeach
-<hr/>
 
    @include('account.partial.telephone') 
 	<input type="hidden" name="page" value="ind" id="page"/>
     <br>
 <br><h2>Kiruv Associations</h2><br>
+<ul>
 	@foreach ($admire->DashboardIndAffiliation($indid) as $IndAffiliation)
 
 
-	{{$IndAffiliation->Type}} {{$IndAffiliation->Detail}}<br>
-@if ($IndAffiliation->RelatedTo = "CAMP")
+<li>	{{$IndAffiliation->Type}} {{$IndAffiliation->Detail}}<br>
+
+@if ($IndAffiliation->Type == "CAMP")
 <p><a target='_blank' href='http://www.thezone.org/form_validate.asp?id={{$IndAffiliation->RelatedID}}&name={{$IndInfoLi->LastName }}'>Login</a></p>
+@elseif ($IndAffiliation->Type == "CHAVRUSAH")
+
+<p><a target='_blank' href='http://www.torahmates.org/mileage/index.asp?id={{$IndAffiliation->RelatedID}}&from=oorah'>Login</a></p>
+@elseif ($IndAffiliation->Type == "TUITION" && $IndAffiliation->Status == "Confirmed")
+
+<p><a target='_blank' href='http://www.oorah.org/newtution/index.asp?id={{$IndAffiliation->RelatedID}}&from=oorah'>Login</a></p>
 @endif
+
 {{$IndAffiliation->Status}}
 	
 @if ($IndAffiliation->Coordinator !="") 
 	<br>Coordinator: {{$IndAffiliation->Coordinator}}
 	@endif
 
-
+</li>
 		@endforeach
-<ul>
+
 <!-- <li><a href="https://www.thezone.org/">Apply to camp</a></li> -->
 </ul>
 @stop

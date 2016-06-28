@@ -86,9 +86,10 @@ if ($validator->fails()) {
 		;
 		}
 	
-function test(){
+function test() {
+	
 $admire = new admire();
-			$response =  $admire->DashboardIndTel(37285);
+			$response =  $admire->testnames(238051);
 			return $response;
 }
 	function showDashboardInd( $indid) {

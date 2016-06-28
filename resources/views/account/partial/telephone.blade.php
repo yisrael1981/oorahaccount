@@ -17,7 +17,7 @@
 		
 		@endforeach
 		
-<button type="button" class=" btn-xs btn btn-default" data-toggle="modal" data-target="#telModal" id="newtelbtn">Add new number/email</button>
+<button type="button" class=" btn-xs btn btn-default" data-toggle="modal" data-target="#telModal" id="newtelbtn">Add new contact number/email</button>
 
 <div id="telModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
